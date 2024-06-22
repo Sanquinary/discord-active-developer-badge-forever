@@ -55,7 +55,7 @@ Follow the easy steps below to set up and run your own Discord Active Developer 
     pm2 startup
     ```
 
-## Interactive configuration
+### Interactive configuration
 
 When you run `node index.js` for the first time, you will get four prompts. 
 The prompts assume you have the following setup:
@@ -74,6 +74,14 @@ Below is an guide on what to put in each prompt.
     - Click on the settings cog in the bottom left corner. Go to Appearance -> allll the way at the bottom. Toggle "Developer Mode" on
 4. Discord Channel ID
   - Open Discord -> Navigate to your server -> Right-click your desired text channel -> `Copy Channel ID`
+
+### Retrieving the badge
+
+**As long as you:**
+  - have manually run the `/ping` command in your Discord Server after starting your bot with `node index.js` and
+  - meet [Discord's requirements](https://support-dev.discord.com/hc/en-us/articles/10113997751447-Active-Developer-Badge) for the Active Developer Badge
+
+**You can patiently wait 24 hours and refresh this page: https://discord.com/developers/active-developer to claim your badge.**
 
 ## Contributing
 
