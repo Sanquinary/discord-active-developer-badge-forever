@@ -1,24 +1,24 @@
 # Discord Active Developer Badge Forever
 
-![Discord](https://img.shields.io/discord/000000000000000000?logo=discord)
 ![Node.js](https://img.shields.io/badge/node.js-339933?style=flat&logo=node.js&logoColor=white)
-![License](https://img.shields.io/github/license/your-username/discord-active-developer-badge-forever)
+![License](https://img.shields.io/github/license/Sanquinary/discord-active-developer-badge-forever)
 
-A simple Discord bot built with `discord.js` that automatically sends the `/ping` command monthly to never lose the Discord Active Developer Badge and keep it forever.
+A simple Discord bot built with `discord.js` that automatically sends the `/ping` command monthly in order to never lose the Discord Active Developer Badge and keep it forever.
 
 ## Features
 
 - **/ping Command**: Responds with "Pong!" when the `/ping` command is used.
 - **Automated Monthly Ping**: Automatically sends the `/ping` command in a specified channel every month.
 - **Easy Setup**: Interactive setup script for configuration.
-- **Persistent Scheduling**: Maintains the schedule even after restarts (no server/VPS required!).
+- **Persistent Scheduling**: Maintains the schedule even after restarts. (no server/VPS required!)
 
 ## Getting Started
 
-Follow these easy steps to set up and run the Discord Active Developer Badge bot.
+Follow the easy steps below to set up and run your own Discord Active Developer Badge bot.
 
 ### Prerequisites
 
+- [git](https://git-scm.com/downloads)
 - [Node.js](https://nodejs.org/) (v16.6.0 or higher)
 - [npm](https://www.npmjs.com/)
 - A Discord account with permissions to create and manage bots
