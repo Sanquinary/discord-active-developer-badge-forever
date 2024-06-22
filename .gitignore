@@ -1,0 +1,12 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore .env files
+.env
+
+# Ignore .json files (if it contains sensitive information)
+config.json
+schedule.json
+
+# Ignore log files
+*.log

@@ -1,0 +1,18 @@
+{
+  "name": "discord-active-developer-badge-forever",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "import-fresh": "^3.3.0",
+    "inquirer": "^9.2.23",
+    "node-cron": "^3.0.3"
+  }
+}
