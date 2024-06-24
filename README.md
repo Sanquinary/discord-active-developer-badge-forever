@@ -19,10 +19,13 @@ Follow these steps to set up and run your own Discord Active Developer Badge bot
 ### Prerequisites
 
 - A [Discord Developer Application](https://discord.com/developers/applications)
+    - Click `New Application` found in the top-right
 - A Bot for the [Discord Developer Application](https://discord.com/developers/applications)
     - Click the `Bot` tab inside your Application
 - A Discord server and account with permissions to create and manage bots
     - Your Discord Server needs to be a [Community Server](https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server)
+
+For local hosting (optional):
 - [git](https://git-scm.com/downloads)
 - [Node.js](https://nodejs.org/) (v16.6.0 or higher)
 - [npm](https://www.npmjs.com/)
@@ -77,17 +80,17 @@ Follow these steps to set up and run your own Discord Active Developer Badge bot
 When you run the project for the first time, you will be prompted to provide the following:
 
 1. **Bot Secret Token**:
-   - Go to: [Applications](https://discord.com/developers/applications) -> YOUR_APPLICATION -> Bot Tab -> Reset Token -> Copy this token
+   - Go to: [Applications](https://discord.com/developers/applications) -> YOUR_APPLICATION -> Bot Tab -> Reset Token -> `Copy this token`
 
 2. **Bot Client ID**:
-   - Go to: [Applications](https://discord.com/developers/applications) -> YOUR_APPLICATION -> Application ID -> Copy this ID
+   - Go to: [Applications](https://discord.com/developers/applications) -> YOUR_APPLICATION -> Application ID -> `Copy this ID`
 
 3. **Discord Server (Guild) ID**:
-   - Open Discord -> Navigate to your server -> Right-click the server name -> Copy Server ID
+   - Open Discord -> Navigate to your server -> Right-click the server name -> `Copy Server ID`
    - If `Copy Server ID` doesn't show, enable Developer Mode in Settings -> Appearance -> Developer Mode
 
 4. **Discord Channel ID**:
-   - Open Discord -> Navigate to your server -> Right-click the desired text channel -> Copy Channel ID
+   - Open Discord -> Navigate to your server -> Right-click the desired text channel -> `Copy Channel ID`
 
 ### Retrieving the Badge
 
