@@ -3,14 +3,16 @@
 ![Node.js](https://img.shields.io/badge/node.js-339933?style=flat&logo=node.js&logoColor=white)
 ![License](https://img.shields.io/github/license/Sanquinary/discord-active-developer-badge-forever)
 
-A simple Discord bot built with `discord.js` that automatically sends the `/ping` command monthly to keep the Discord Active Developer Badge forever.
+A simple Discord bot built with `discord.js` that automatically sends a scheduled command monthly to keep the Discord Active Developer Badge forever.
+
+Discord removes Active Developer badges for inactive applications after 60 days. This project solves this issue for you so you never have manually intervene or worry about losing it again!
 
 ## Features
 
-- **/ping Command**: Responds with "Pong!" when the `/ping` command is used.
-- **Automated Monthly Ping**: Sends the `/ping` command in a specified channel every month.
 - **Easy Setup**: Interactive setup script for configuration.
-- **Persistent Scheduling**: Maintains the monthly schedule even after stops or restarts.
+- **Input Validation**: Ensures correct configuration during setup.
+- **Scheduled Command**: Sends a scheduled command in a specified channel monthly, weekly or daily. 
+- **Persistent Scheduling**: Maintains the schedule even after stops or restarts.
 
 ## Getting Started
 
@@ -91,6 +93,10 @@ When you run the project for the first time, you will be prompted to provide the
 
 4. **Discord Channel ID**:
    - Open Discord -> Navigate to your server -> Right-click the desired text channel -> `Copy Channel ID`
+
+5. **Choose Schedule**:
+   - Choose between a monthly (recommended), weekly, daily or custom cron schedule.
+   - The schedule will be stored and a command showing server stats will be executed on the schedule date.
 
 ### Retrieving the Badge
 
