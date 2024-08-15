@@ -5,7 +5,7 @@
 
 A simple Discord bot built with `discord.js` that automatically sends a scheduled command monthly to keep the Discord Active Developer Badge forever.
 
-Discord removes Active Developer badges for inactive applications after 60 days. This project solves this issue for you so you never have manually intervene or worry about losing it again!
+Discord removes Active Developer badges for inactive applications after 60 days. This project solves this issue for you so you never have manually intervene or worry about losing the badge again!
 
 ## Features
 
@@ -24,7 +24,7 @@ Follow these steps to set up and run your own Discord Active Developer Badge bot
     - Click `New Application` found in the top-right
 - A Bot for the [Discord Developer Application](https://discord.com/developers/applications)
     - Click the `Bot` tab inside your Application
-- A Discord server and account with permissions to create and manage bots
+- A Discord server and Discord account with server permissions to add and manage bots
     - Your Discord Server needs to be a [Community Server](https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server)
 
 For local hosting (optional):
@@ -38,12 +38,12 @@ For local hosting (optional):
    - Import this repo by clicking this button: [![Run on Repl.it](https://replit.com/badge/github/Sanquinary/discord-active-developer-badge-forever)](https://replit.com/new/github/Sanquinary/discord-active-developer-badge-forever)
    - You will need a Replit account. Sign up with Google/GitHub for quick registration.
 2. **Click the Run button**
-3. **Answer the 4 prompts**
-   - Answer the 4 prompts in the console in the bottom-right.
+3. **Answer the 5 prompts**
+   - Answer the 5 prompts in the console in the bottom-right.
    - Don't know the answers? No worries! Check the [Interactive Configuration](#interactive-configuration) section.
 4. **You're done!**
-   - Test your bot in your server by sending `/ping` or wait for the automatic monthly schedule.
-   - The schedule to maintain active status is logged in the `schedule.json` file.
+   - The bot should already have sent a command, if not use `/ping`
+   - The schedule to maintain active status is logged in `src/schedule.json`.
 5. **[Retrieving the Badge](#retrieving-the-badge)**
 
 ### Local Hosting (Option 2)
@@ -97,6 +97,7 @@ When you run the project for the first time, you will be prompted to provide the
 5. **Choose Schedule**:
    - Choose between a monthly (recommended), weekly, daily or custom cron schedule.
    - The schedule will be stored and a command showing server stats will be executed on the schedule date.
+   - The schedule automatically renews once it has passed.
 
 ### Retrieving the Badge
 
