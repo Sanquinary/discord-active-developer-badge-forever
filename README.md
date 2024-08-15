@@ -67,7 +67,7 @@ For local hosting (optional):
     node index.js
     ```
 
-4. **(Optional) Start the bot with PM2:**
+4. **(Optional) Start the bot with [PM2](https://pm2.keymetrics.io/):**
     ```sh
     npm install pm2 -g
     pm2 start index.js --name "discord-bot"
