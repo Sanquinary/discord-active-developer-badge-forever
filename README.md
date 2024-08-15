@@ -101,7 +101,7 @@ When you run the project for the first time, you will be prompted to provide the
 ### Retrieving the Badge
 
 To retrieve the badge:
-- Manually run the `/ping` command in your Discord Server after starting your bot in Replit with `Run` or with `node index.js` locally.
+- Make sure your bot have executed a command in your Discord Server after starting your bot in Replit with `Run` or with `node index.js` locally.
 - Ensure you meet [Discord's requirements](https://support-dev.discord.com/hc/en-us/articles/10113997751447-Active-Developer-Badge) for the Active Developer Badge
 
 Wait at least 24 hours and check this page: [Active Developer Badge](https://discord.com/developers/active-developer) to claim your badge.
