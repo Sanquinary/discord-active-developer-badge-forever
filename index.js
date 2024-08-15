@@ -1,21 +1,79 @@
+// index.js
 const fs = require('fs');
-const { Client, GatewayIntentBits, REST, Routes } = require('discord.js');
-const cron = require('node-cron');
-const { runSetup } = require('./setup');
-const { saveNextExecutionTime, loadNextExecutionTime } = require('./utils');
+const { Client, GatewayIntentBits, REST, Routes, EmbedBuilder } = require('discord.js');
+const { runSetup } = require('./src/setup');
+const { saveNextExecutionTime } = require('./src/utils/utils');
+const { handleError } = require('./src/utils/errorHandler');
+
+// Function to check if the config is complete
+function isConfigComplete(config) {
+    return config.token && config.clientId && config.guildId && config.channelId && config.schedule;
+}
+
+// Function to send server stats
+async function sendServerStats(channel, client) {
+    const guild = channel.guild;
+    const memberCount = guild.memberCount;
+    const owner = await guild.fetchOwner();
+    const createdAt = guild.createdAt.toDateString();
+
+    // Constructing an embedded message
+    const serverStatsEmbed = new EmbedBuilder()
+        .setColor(0x0099ff)
+        .setTitle(`Server Stats for ${guild.name}`)
+        .setThumbnail(guild.iconURL())
+        .addFields(
+            { name: 'Member Count', value: `${memberCount}`, inline: true },
+            { name: 'Server Owner', value: `${owner.user.tag}`, inline: true },
+            { name: 'Created On', value: `${createdAt}`, inline: true }
+        )
+        .setFooter({ text: 'Server Stats', iconURL: client.user.avatarURL() });
+
+    await channel.send({ embeds: [serverStatsEmbed] });
+}
+
+// Function to schedule commands
+async function scheduleCommands(channel, client) {
+    try {
+        await sendServerStats(channel, client);
+        let nextExecutionTime = new Date();
+        nextExecutionTime.setMonth(nextExecutionTime.getMonth() + 1);
+        nextExecutionTime.setDate(1);
+        nextExecutionTime.setHours(0, 0, 0, 0);
+        saveNextExecutionTime(nextExecutionTime);
+        console.log(`Scheduled command will be sent on: ${nextExecutionTime}`);
+    } catch (error) {
+        handleError(error, 'Failed to send scheduled command', client.user.id);
+    }
+}
+
+// Function to register commands
+async function registerCommands(finalConfig) {
+    const rest = new REST({ version: '10' }).setToken(finalConfig.token);
+    try {
+        console.log('Started refreshing application (/) commands.');
+        await rest.put(
+            Routes.applicationGuildCommands(finalConfig.clientId, finalConfig.guildId),
+            {
+                body: [
+                    { name: 'ping', description: 'Replies with Pong and shows latency!' },
+                    { name: 'serverstats', description: 'Shows server statistics.' }
+                ]
+            }
+        );
+        console.log('Successfully refreshed application (/) commands.');
+    } catch (error) {
+        handleError(error, 'Error registering commands', finalConfig.clientId);
+    }
+}
 
 async function startBot() {
-    // Check if config.json exists and is complete
-    function isConfigComplete(config) {
-        return config.token && config.clientId && config.guildId && config.channelId;
-    }
-
-    if (!fs.existsSync('config.json')) {
+    if (!fs.existsSync('config/config.json')) {
         console.log('Configuration file not found. Running setup...');
         await runSetup();
     }
 
-    const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+    const config = JSON.parse(fs.readFileSync('config/config.json', 'utf8'));
 
     if (!isConfigComplete(config)) {
         console.log('Configuration file is incomplete. Running setup...');
@@ -23,66 +81,50 @@ async function startBot() {
     }
 
     // Reload the config after setup
-    const finalConfig = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+    const finalConfig = JSON.parse(fs.readFileSync('config/config.json', 'utf8'));
 
-    // Your bot setup
-    const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-    const rest = new REST({ version: '10' }).setToken(finalConfig.token);
+    // Minimal bot setup to check if the bot is in the server
+    const client = new Client({
+        intents: [GatewayIntentBits.Guilds]
+    });
 
-    client.once('ready', () => {
+    client.once('ready', async () => {
         console.log('Bot is online!');
+        try {
+            // Full bot setup
+            client.options.intents = [
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.GuildMembers,
+            ];
 
-        // Load or set next execution time
-        let nextExecutionTime = loadNextExecutionTime();
-        if (!nextExecutionTime) {
-            nextExecutionTime = new Date();
-            nextExecutionTime.setMonth(nextExecutionTime.getMonth() + 1);
-            nextExecutionTime.setDate(1);
-            nextExecutionTime.setHours(0, 0, 0, 0);
-            saveNextExecutionTime(nextExecutionTime);
-        }
-        console.log(`Next /ping command scheduled for: ${nextExecutionTime}`);
-
-        // Schedule the command
-        cron.schedule('0 0 1 * *', async () => { // Every month on the 1st at 00:00
-            console.log('Executing scheduled /ping command...');
             const channel = await client.channels.fetch(finalConfig.channelId);
-            await channel.send('/ping');
-            nextExecutionTime = new Date();
-            nextExecutionTime.setMonth(nextExecutionTime.getMonth() + 1);
-            nextExecutionTime.setDate(1);
-            nextExecutionTime.setHours(0, 0, 0, 0);
-            saveNextExecutionTime(nextExecutionTime);
-        });
+            scheduleCommands(channel, client);
+            registerCommands(finalConfig);
+        } catch (error) {
+            handleError(error, 'An error occurred while fetching the guild', finalConfig.clientId);
+        }
     });
 
     client.on('interactionCreate', async interaction => {
         if (!interaction.isCommand()) return;
 
-        const { commandName } = interaction;
-
-        if (commandName === 'ping') {
-            await interaction.reply('Pong!');
+        if (interaction.commandName === 'ping') {
+            const sent = await interaction.reply({ content: 'Pong!', fetchReply: true });
+            const latency = sent.createdTimestamp - interaction.createdTimestamp;
+            await interaction.editReply(`🏓 Latency is ${latency}ms.`);
+        } else if (interaction.commandName === 'serverstats') {
+            try {
+                await sendServerStats(interaction.channel, client);
+                await interaction.reply({ content: 'Here are the server stats!', ephemeral: true });
+            } catch (error) {
+                handleError(error, 'Failed to send server stats', finalConfig.clientId);
+                await interaction.reply({ content: 'Failed to retrieve server stats. Please try again later.', ephemeral: true });
+            }
         }
     });
 
     client.login(finalConfig.token);
-
-    // Register commands
-    (async () => {
-        try {
-            console.log('Started refreshing application (/) commands.');
-
-            await rest.put(
-                Routes.applicationGuildCommands(finalConfig.clientId, finalConfig.guildId),
-                { body: [{ name: 'ping', description: 'Replies with Pong!' }] },
-            );
-
-            console.log('Successfully reloaded application (/) commands.');
-        } catch (error) {
-            console.error(error);
-        }
-    })();
 }
 
 startBot();

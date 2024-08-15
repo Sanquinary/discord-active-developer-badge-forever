@@ -5,8 +5,8 @@ node_modules/
 .env
 
 # Ignore .json files (if it contains sensitive information)
-config.json
-schedule.json
+config/config.json
+config/schedule.json
 
 # Ignore log files
 *.log
