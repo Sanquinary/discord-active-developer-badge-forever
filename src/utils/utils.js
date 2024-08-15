@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const scheduleFile = 'schedule.json';
+const scheduleFile = 'config/schedule.json';
 
 function saveNextExecutionTime(nextExecutionTime) {
     fs.writeFileSync(scheduleFile, JSON.stringify({ nextExecutionTime }));
