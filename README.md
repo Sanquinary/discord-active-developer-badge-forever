@@ -9,10 +9,10 @@ Discord removes Active Developer badges for inactive applications after 60 days.
 
 ## Features
 
-- **Easy Setup**: Interactive setup script for configuration.
-- **Input Validation**: Ensures correct configuration during setup.
-- **Scheduled Command**: Sends a scheduled command in a specified channel monthly, weekly or daily. 
-- **Persistent Scheduling**: Maintains the schedule even after stops or restarts.
+- [x] **Easy Setup**: Interactive setup script for configuration.
+- [x] **Input Validation**: Ensures correct configuration during setup.
+- [x] **Scheduled Command**: Automatically sends a scheduled command in a specified channel monthly, weekly, daily or custom. ([cron](https://crontab.guru/))
+- [x] **Persistent Scheduling**: Maintains the schedule even after stops or restarts.
 
 ## Getting Started
 
@@ -33,7 +33,10 @@ For local hosting (optional):
 - [npm](https://www.npmjs.com/)
 
 Decide if you would like to run the bot [locally](#remote-hosting-on-replit-option-1) or [remotely](#remote-hosting-on-replit-option-1).
+
 Click one of the arrows below to reveal the steps.
+
+****
 
 ### Remote Hosting on Replit (Option 1)
 <details>
@@ -82,8 +85,10 @@ Click one of the arrows below to reveal the steps.
     pm2 save
     pm2 startup
     ```
-
+    
 </details>
+
+****
 
 ### Interactive Configuration
 
@@ -106,6 +111,8 @@ When you run the project for the first time, you will be prompted to provide the
    - Choose between a monthly (recommended), weekly, daily or custom cron schedule.
    - The schedule will be stored and a command displaying your server stats will be executed on the schedule date.
    - The schedule automatically renews once it has passed.
+
+****
 
 ### Retrieving the Badge
 
