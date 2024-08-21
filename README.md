@@ -61,24 +61,26 @@ Click one of the arrows below to reveal the steps.
    <summary><u>Steps for Local Hosting</u></summary>
 
 1. **Clone the repository:**
+
    [Download](https://github.com/Sanquinary/discord-active-developer-badge-forever/archive/refs/heads/main.zip) the repository directly or open your terminal in your desired folder, copy/paste and execute the following:
     ```sh
     git clone https://github.com/Sanquinary/discord-active-developer-badge-forever.git
     cd discord-active-developer-badge-forever
     ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
     ```sh
     npm install
     ```
 
-3. **Start the bot:**
+4. **Start the bot:**
+
    Run `start-app.bat` or `start-app.sh` or execute from your terminal:
     ```sh
     node index.js
     ```
 
-4. **(Optional) Start the bot with [PM2](https://pm2.keymetrics.io/):**
+6. **(Optional) Start the bot with [PM2](https://pm2.keymetrics.io/):**
     ```sh
     npm install pm2 -g
     pm2 start index.js --name "discord-bot"
