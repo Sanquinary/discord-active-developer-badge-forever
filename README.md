@@ -5,7 +5,7 @@
 
 A simple Discord bot built with `discord.js` that automatically sends a scheduled command monthly to keep the Discord Active Developer Badge forever.
 
-Discord removes Active Developer badges for inactive applications after 60 days. This project solves this issue for you so you never have manually intervene or worry about losing the badge again!
+Discord removes Active Developer badges for inactive applications after 60 days. This project solves this issue for you so you never have to manually intervene or worry about losing the badge again!
 
 ## Features
 
@@ -20,11 +20,11 @@ Follow these steps to set up and run your own Discord Active Developer Badge bot
 
 ### Prerequisites
 
-- A [Discord Developer Application](https://discord.com/developers/applications)
+1. A [Discord Developer Application](https://discord.com/developers/applications)
     - Click `New Application` found in the top-right
-- A Bot for the [Discord Developer Application](https://discord.com/developers/applications)
+2. A Bot for the [Discord Developer Application](https://discord.com/developers/applications)
     - Click the `Bot` tab inside your Application
-- A Discord server and Discord account with server permissions to add and manage bots
+3. A Discord server and Discord account with server permissions to add and manage bots
     - Your Discord Server needs to be a [Community Server](https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server)
 
 For local hosting (optional):
@@ -32,7 +32,12 @@ For local hosting (optional):
 - [Node.js](https://nodejs.org/) (v16.6.0 or higher)
 - [npm](https://www.npmjs.com/)
 
+Decide if you would like to run the bot [locally](#remote-hosting-on-replit-option-1) or [remotely](#remote-hosting-on-replit-option-1).
+Click one of the arrows below to reveal the steps.
+
 ### Remote Hosting on Replit (Option 1)
+<details>
+   <summary><u>Steps for Remote Hosting on Replit</u></summary>
 
 1. **Go to Replit**
    - Import this repo by clicking this button: [![Run on Repl.it](https://replit.com/badge/github/Sanquinary/discord-active-developer-badge-forever)](https://replit.com/new/github/Sanquinary/discord-active-developer-badge-forever)
@@ -46,12 +51,14 @@ For local hosting (optional):
    - The schedule to maintain active status is logged in `src/schedule.json`.
 5. **[Retrieving the Badge](#retrieving-the-badge)**
 
-### Local Hosting (Option 2)
+</details>
 
+### Local Hosting (Option 2)
 <details>
-  <summary>Local Hosting Steps</summary>
+   <summary><u>Steps for Local Hosting</u></summary>
 
 1. **Clone the repository:**
+   [Download](https://github.com/Sanquinary/discord-active-developer-badge-forever/archive/refs/heads/main.zip) the repository directly or open your terminal in your desired folder, copy/paste and execute the following:
     ```sh
     git clone https://github.com/Sanquinary/discord-active-developer-badge-forever.git
     cd discord-active-developer-badge-forever
@@ -63,6 +70,7 @@ For local hosting (optional):
     ```
 
 3. **Start the bot:**
+   Run `start-app.bat` or `start-app.sh` or execute from your terminal:
     ```sh
     node index.js
     ```
@@ -96,7 +104,7 @@ When you run the project for the first time, you will be prompted to provide the
 
 5. **Choose Schedule**:
    - Choose between a monthly (recommended), weekly, daily or custom cron schedule.
-   - The schedule will be stored and a command showing server stats will be executed on the schedule date.
+   - The schedule will be stored and a command displaying your server stats will be executed on the schedule date.
    - The schedule automatically renews once it has passed.
 
 ### Retrieving the Badge
